@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aya World</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <section class="hero">
+      <nav class="navbar">
+        <h1 class="logo">Aya World</h1>
+        <div class="cart-icon" id="cartIcon">
+  🛒 <span id="cartCount">0</span>
+</div>
+
+      
+
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="books.html">Books</a>
+          <a href="cups.html">Cups</a>
+           <a href="products.html">Products</a>
+          <a href="review.html">Review</a>
+        </div>
+      </nav>
+
+
+      
+    <section class="products" id="books">
+      <h2 class="section-title">Our Books</h2>
+    
+
+
+      <div class="cards-wrapper">
+        <div class="product-card large-card">
+          <div class="img-wrapper">
+            <img src="10.jpg" class="product-img active" />
+            <img src="11.jpg" class="product-img" />
+            <img src="12.jpg" class="product-img" />
+
+            <button class="next-img">›</button>
+          </div>
+
+          <div class="card-info">
+            <h3>The Silent Night</h3>
+            <span class="price">$12</span>
+          <button
+  class="add-cart"
+  data-name="The Silent Night"
+  data-price="12"
+>
+  Add to Cart
+</button>
+
+          </div>
+        </div>
+
+         <div class="product-card large-card">
+          <div class="img-wrapper">
+            <img src="11.jpg" class="product-img active" />
+            <img src="10.jpg" class="product-img" />
+            <img src="12.jpg" class="product-img" />
+
+            <button class="next-img">›</button>
+          </div>
+
+          <div class="card-info">
+            <h3>The Silent Night</h3>
+            <span class="price">$12</span>
+            <button
+  class="add-cart"
+  data-name="The Silent Night"
+  data-price="12"
+>
+  Add to Cart
+</button>
+          </div>
+        </div>
+
+
+         <div class="product-card large-card">
+          <div class="img-wrapper">
+            <img src="12.jpg" class="product-img active" />
+            <img src="11.jpg" class="product-img" />
+            <img src="10.jpg" class="product-img" />
+
+            <button class="next-img">›</button>
+          </div>
+
+          <div class="card-info">
+            <h3>The Silent Night</h3>
+            <span class="price">$12</span>
+           <button
+  class="add-cart"
+  data-name="The Silent Night"
+  data-price="12"
+>
+  Add to Cart
+</button>
+          </div>
+        </div>
+
+
+         <div class="product-card large-card">
+          <div class="img-wrapper">
+            <img src="10.jpg" class="product-img active" />
+            <img src="11.jpg" class="product-img" />
+            <img src="12.jpg" class="product-img" />
+
+            <button class="next-img">›</button>
+          </div>
+
+          <div class="card-info">
+            <h3>The Silent Night</h3>
+            <span class="price">$12</span>
+          <button
+  class="add-cart"
+  data-name="The Silent Night"
+  data-price="12"
+>
+  Add to Cart
+</button>
+          </div>
+        </div>
+
+
+         <div class="product-card large-card">
+          <div class="img-wrapper">
+            <img src="11.jpg" class="product-img active" />
+            <img src="10.jpg" class="product-img" />
+            <img src="12.jpg" class="product-img" />
+
+            <button class="next-img">›</button>
+          </div>
+
+          <div class="card-info">
+            <h3>The Silent Night</h3>
+            <span class="price">$12</span>
+            <button
+  class="add-cart"
+  data-name="The Silent Night"
+  data-price="12"
+>
+  Add to Cart
+</button>
+          </div>
+        </div>
+
+
+         <div class="product-card large-card">
+          <div class="img-wrapper">
+            <img src="12.jpg" class="product-img active" />
+            <img src="11.jpg" class="product-img" />
+            <img src="10.jpg" class="product-img" />
+
+            <button class="next-img">›</button>
+          </div>
+
+          <div class="card-info">
+            <h3>The Silent Night</h3>
+            <span class="price">$12</span>
+            <button
+  class="add-cart"
+  data-name="The Silent Night"
+  data-price="12"
+>
+  Add to Cart
+</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+   <div class="cart-overlay" id="cartModal">
+  <div class="cart-card" id="cartCard">
+    <span class="close-cart" id="closeCart">×</span>
+
+    <h3>Your Order</h3>
+    <div id="cartItems"></div>
+
+    <button id="whatsappBtn" class="order-btn">
+      اطلب عبر واتساب
+    </button>
+  </div>
+</div>
+
+
+    
+   <script src="script.js">
+     
+
+    </script>
+  </body>
+   
+
+</html>
