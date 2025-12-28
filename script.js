@@ -42,83 +42,106 @@ document.querySelectorAll(".product-card").forEach((card) => {
 });
 document.addEventListener("DOMContentLoaded", () => {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const cartCard = document.getElementById("cartCard");
+
   const cartCount = document.getElementById("cartCount");
   const cartIcon = document.getElementById("cartIcon");
   const cartModal = document.getElementById("cartModal");
+  const cartCard = document.getElementById("cartCard");
   const cartItems = document.getElementById("cartItems");
   const whatsappBtn = document.getElementById("whatsappBtn");
   const closeCart = document.getElementById("closeCart");
 
-  // تحديث العدد
+  // تحديث عدد العناصر في أيقونة السلة
   function updateCartCount() {
-    let totalQty = 0;
-    cart.forEach((item) => (totalQty += item.quantity));
-    cartCount.innerText = totalQty;
+    cartCount.innerText = cart.length;
+  }
+
+  // عرض عناصر السلة
+  function renderCartItems() {
+    cartItems.innerHTML = "";
+    let totalPrice = 0;
+
+    if (cart.length === 0) {
+      cartItems.innerHTML = "<p>السلة فارغة</p>";
+      return;
+    }
+
+    cart.forEach((item, index) => {
+      totalPrice += item.price * item.quantity;
+      cartItems.innerHTML += `
+        <div class="cart-item">
+          <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+          <div class="cart-item-info">
+            <p class="cart-item-name">${item.name}</p>
+            <p class="cart-item-price">$${item.price}</p>
+          </div>
+          <button class="delete-item" data-index="${index}">×</button>
+        </div>
+      `;
+    });
+
+    cartItems.innerHTML += `<hr /><p class="cart-total"><strong>Total: $${totalPrice}</strong></p>`;
+
+    // حذف عنصر عند الضغط على ❌
+    document.querySelectorAll(".delete-item").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const i = Number(btn.dataset.index);
+        cart.splice(i, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+        renderCartItems();
+      });
+    });
   }
 
   updateCartCount();
+  renderCartItems();
 
-  // إضافة للسلة
+  // إضافة عنصر للسلة
   document.querySelectorAll(".add-cart").forEach((btn) => {
     btn.addEventListener("click", () => {
       const name = btn.dataset.name;
       const price = Number(btn.dataset.price);
+      const img = btn.dataset.img;
 
-      if (!name || !price) return;
-
-      const existing = cart.find((i) => i.name === name);
-
-      if (existing) {
-        existing.quantity++;
-      } else {
-        cart.push({ name, price, quantity: 1 });
-      }
+      // كل إضافة كسطر مستقل
+      cart.push({ name, price, img, quantity: 1 });
 
       localStorage.setItem("cart", JSON.stringify(cart));
       updateCartCount();
+      renderCartItems();
     });
   });
 
-  // فتح السلة
+  // فتح السلة عند الضغط على أيقونة السلة
   cartIcon.addEventListener("click", () => {
-    cartItems.innerHTML = "";
-    let totalPrice = 0;
-
-    cart.forEach((item) => {
-      totalPrice += item.price * item.quantity;
-      cartItems.innerHTML += `<p>${item.name} × ${item.quantity} — $${item.price}</p>`;
-    });
-
-    cartItems.innerHTML += `<hr /><p><strong>Total: $${totalPrice}</strong></p>`;
+    renderCartItems();
     cartModal.style.display = "flex";
   });
 
-  // إغلاق ×
+  // إغلاق السلة عند الضغط على ×
   closeCart.addEventListener("click", () => {
     cartModal.style.display = "none";
   });
 
-  // إغلاق بالكبسة برا المودال
+  // إغلاق عند الضغط خارج الكرت
   cartModal.addEventListener("click", (e) => {
-    if (e.target === cartModal) {
-      cartModal.style.display = "none";
-    }
+    if (e.target === cartModal) cartModal.style.display = "none";
   });
 
-  // منع الإغلاق عند الضغط داخل الكرت
-  cartCard.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
+  // منع إغلاق عند الضغط داخل الكرت
+  cartCard.addEventListener("click", (e) => e.stopPropagation());
 
-  // إرسال واتساب + تفريغ السلة
+  // إرسال الطلب عبر واتساب وتفريغ السلة
   whatsappBtn.addEventListener("click", () => {
+    if (cart.length === 0) return;
+
     let message = "New Order:%0A";
     let totalPrice = 0;
 
     cart.forEach((item) => {
       totalPrice += item.price * item.quantity;
-      message += `- ${item.name} × ${item.quantity} ($${item.price})%0A`;
+      message += `- ${item.name} ($${item.price})%0A`;
     });
 
     message += `%0ATotal: $${totalPrice}`;
@@ -127,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cart = [];
     localStorage.removeItem("cart");
     updateCartCount();
+    renderCartItems();
     cartModal.style.display = "none";
   });
 });
