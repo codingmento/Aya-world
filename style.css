@@ -1,4 +1,4 @@
-* {
+ * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -692,8 +692,7 @@ body {
     }
 
     .cart-overlay {
-
-        top: -20px;
+  bottom: 700px;
 
     }
 }
@@ -726,3 +725,4 @@ body {
 
     }
 }
+
