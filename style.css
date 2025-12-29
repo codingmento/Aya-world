@@ -234,8 +234,7 @@ body {
     background: linear-gradient(145deg, #F1ECFB, #D6CCEE);
     border-radius: 24px;
     padding: 15px;
-    height: 350px;
-    /* ارتفاع افتراضي للكروت */
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -248,7 +247,7 @@ body {
 /* الصور داخل الكروت */
 .product-card.large-card img {
     width: 100%;
-    max-height: 300px;
+    max-height: 160px;
     object-fit: contain;
     /* بدنا الصورة كلها بدون تقطيع */
     border-radius: 18px;
