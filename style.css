@@ -523,7 +523,6 @@ body {
     }
 }
 
-
 @media (max-width:1010px) {
 
     /* Hamburger */
@@ -631,6 +630,14 @@ body {
 
     .nav-links a {
         font-size: 20px;
+    }
+
+    .add-cart {
+        margin-top: 5px;
+        padding: 6px 10px;
+
+        font-size: 8px;
+
     }
 
 
